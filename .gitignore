@@ -1,0 +1,95 @@
+# Build artifacts
+/target/
+**/target/
+
+# Cargo.lock: commit for binaries and applications.
+# For pure libraries, uncomment the line below.
+# Cargo.lock
+
+# Rustfmt backups
+**/*.rs.bk
+
+# Debug symbols and MSVC debug info
+*.pdb
+*.dSYM/
+
+# Profiling and coverage output
+*.profraw
+*.profdata
+lcov.info
+cobertura.xml
+tarpaulin-report.html
+/coverage/
+perf.data
+perf.data.old
+flamegraph.svg
+/profile/
+
+# Fuzzing
+/fuzz/target/
+/fuzz/corpus/
+/fuzz/artifacts/
+
+# Benchmarks (criterion)
+/criterion/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials.json
+
+# Local config overrides
+/.cargo/config.local.toml
+
+# IDEs and editors
+.idea/
+*.iml
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+.helix/
+.zed/
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Logs and temp files
+*.log
+*.tmp
+*.temp
+/tmp/
+
+# Generated docs and packaging
+/doc/
+/dist/
+*.crate
+
+# WebAssembly output
+/pkg/
+/wasm-pack.log
+node_modules/
+
+# Docker local overrides
+docker-compose.override.yml
+
+# Database files (local dev)
+*.sqlite
+*.sqlite3
+*.db
