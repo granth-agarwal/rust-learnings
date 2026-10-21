@@ -1,11 +1,11 @@
-use std::io;    // standard input output library
-use rand::prelude::*;   // rand is a crate, and crate is a collection of rust source code files which allow specific functionality, usually not included with the std package.
+use rand::prelude::*;
+use std::io; // standard input output library // rand is a crate, and crate is a collection of rust source code files which allow specific functionality, usually not included with the std package.
 // The prelude module contains the most commonly used parts of the rand crate, and use makes those items available in our program’s scope.
 use std::cmp::Ordering;
 
 // main is the function which is run in Rust.
 fn main() {
-    println!("Guess the number!");  // `println!` is a macro, not a function/method.
+    println!("Guess the number!"); // `println!` is a macro, not a function/method.
 
     /*
     secret_number is an immutable variable. rand is the package.
@@ -46,8 +46,8 @@ fn main() {
         let input = input; // now immutable
         obviously, `&` symbol signifies a memory reference
          */
-        io::stdin()     // part of std::io::Stdin, used to take input
-            .read_line(&mut guess)  // takes input from terminal, reads a line as input as the name suggests. it returns a Result value, and Result is an enum. it can either be `Ok` or `Err`. obv as the name suggests, err represents an error.
+        io::stdin() // part of std::io::Stdin, used to take input
+            .read_line(&mut guess) // takes input from terminal, reads a line as input as the name suggests. it returns a Result value, and Result is an enum. it can either be `Ok` or `Err`. obv as the name suggests, err represents an error.
             .expect("Failed to read line"); // in case of error, we need to have an error/exception handling logic, which is this logic. if we don't write it, the code will compile, but with a warning.
 
         /*
@@ -55,8 +55,17 @@ fn main() {
         when we enter a value from terminal to guess through read_line, we press enter afterwards, which adds a newline character to it.
         trim() removes the newline character and/or whatever breaks the input might have.
         parse() looks at the data type clearly defined with the variable (u32) here and converts the String to that data type.
+        we also add error handling using match case. parse() returns Result, num is the value trimmed which gets assigned to guess. variable, not a keyword.
+        in case of err, it just skips the rest of the code in the iteration in the loop and begins it from starting.
          */
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please type a valid number.");
+                continue;
+            }
+        };
+
         /*
         printing with a placeholder.
         instead of this we can also do this:
@@ -77,7 +86,7 @@ fn main() {
             Ordering::Equal => {
                 println!("You win!");
                 break;
-            },
+            }
         }
     }
 }
